@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Präsidialamt Hannes Aichenauer</title>
+
+<style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#0b1f3a,#183d6b);
+    margin:0;
+    color:#222;
+}
+
+.container{
+    max-width:800px;
+    margin:40px auto;
+    background:white;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+.header{
+    background:#0f2747;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.header h1{
+    margin:0;
+    font-size:2rem;
+}
+
+.header p{
+    margin-top:10px;
+    opacity:0.9;
+}
+
+.content{
+    padding:30px;
+}
+
+.notice{
+    background:#f3f6fa;
+    border-left:5px solid #0f2747;
+    padding:15px;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+button{
+    margin-top:25px;
+    width:100%;
+    padding:15px;
+    background:#0f2747;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:1rem;
+}
+
+button:hover{
+    background:#183d6b;
+}
+
+#result{
+    display:none;
+    margin-top:25px;
+    padding:20px;
+    background:#eef7ee;
+    border:2px solid #4caf50;
+    border-radius:10px;
+}
+
+.processing{
+    margin-top:20px;
+    display:none;
+}
+
+.step{
+    margin:8px 0;
+}
+
+.footer{
+    text-align:center;
+    font-size:0.85rem;
+    color:#666;
+    padding:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🇦🇹 Präsidialamt Hannes Aichenauer</h1>
+        <p>Offizielle Terminvergabestelle für Audienzen und persönliche Vorsprachen</p>
+    </div>
+
+    <div class="content">
+
+        <div class="notice">
+            Aufgrund der hohen Auslastung des Präsidenten werden Anträge derzeit innerhalb von 6–24 Monaten bearbeitet.
+        </div>
+
+        <form id="applicationForm">
+
+            <label>Antragsteller</label>
+            <input type="text" id="name" required>
+
+            <label>Grund des Besuchs</label>
+            <textarea id="reason" rows="4" required></textarea>
+
+            <label>Dringlichkeitsstufe</label>
+            <select id="priority">
+                <option>Normal</option>
+                <option>Wichtig</option>
+                <option>Kritisch</option>
+                <option>Jagdbezogen</option>
+            </select>
+
+            <label>Gewünschter Termin</label>
+            <input type="date">
+
+            <button type="submit">
+                Antrag auf Audienz einreichen
+            </button>
+
+        </form>
+
+        <div class="processing" id="processing">
+            <h3>Bearbeitung läuft ...</h3>
+            <div class="step">✅ Sicherheitsüberprüfung</div>
+            <div class="step">✅ Prüfung der persönlichen Eignung</div>
+            <div class="step">✅ Kalenderabgleich</div>
+            <div class="step">✅ Jagdliche Prioritätsbewertung</div>
+            <div class="step">✅ Kabinettsentscheidung</div>
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+
+    <div class="footer">
+        Präsidialamt Hannes Aichenauer · Referat für Terminverzögerung und organisatorische Überlastung
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("applicationForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    document.getElementById("processing").style.display = "block";
+
+    setTimeout(function(){
+
+        const applicant =
+            document.getElementById("name").value;
+
+        const years = [2027,2028,2029,2030];
+        const randomYear =
+            years[Math.floor(Math.random()*years.length)];
+
+        const fileNumber =
+            "HA-" +
+            Math.floor(1000 + Math.random()*9000);
+
+        document.getElementById("result").style.display = "block";
+
+        document.getElementById("result").innerHTML = `
+            <h2>🎉 Antrag erfolgreich registriert</h2>
+
+            <p>
+            Sehr geehrte/r <strong>${applicant}</strong>,
+            Ihr Antrag wurde ordnungsgemäß entgegengenommen.
+            </p>
+
+            <p>
+            <strong>Aktenzeichen:</strong> ${fileNumber}
+            </p>
+
+            <p>
+            Nach eingehender Prüfung wurde festgestellt,
+            dass der nächste verfügbare Termin beim Präsidenten
+            Hannes Aichenauer voraussichtlich im Jahr
+            <strong>${randomYear}</strong> verfügbar sein wird.
+            </p>
+
+            <p>
+            Bitte sehen Sie von Rückfragen ab.
+            Jede Rückfrage verlängert die Bearbeitungszeit um
+            weitere 14 Werktage.
+            </p>
+
+            <p>
+            Mit freundlichen Grüßen<br>
+            Abteilung für kontrollierte Terminvergabe
+            </p>
+        `;
+
+    }, 2500);
+
+});
+
+</script>
+
+</body>
+</html>
