@@ -4,223 +4,1050 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Präsidialamt Hannes Aichenauer</title>
+<meta name="description" content="Offizielle Terminvergabestelle für Audienzen beim Präsidenten. Bearbeitungszeit: 6–24 Monate.">
+<meta property="og:title" content="Präsidialamt Hannes Aichenauer">
+<meta property="og:description" content="Jetzt Audienz beantragen. Nächster freier Termin: irgendwann.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#14213d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Homemade+Apple&family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
+:root{
+    --navy:#14213d;
+    --navy-2:#1f3160;
+    --red:#c8102e;
+    --gold:#b8892b;
+    --gold-soft:#f4ead3;
+    --paper:#fbf8f1;
+    --ink:#1d1d1f;
+    --muted:#6b6f7a;
+    --line:#e3dfd4;
+    --ok:#2e7d32;
+    --radius:14px;
+}
+
+*{ box-sizing:border-box; }
+
 body{
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg,#0b1f3a,#183d6b);
     margin:0;
-    color:#222;
+    font-family:"Inter", system-ui, sans-serif;
+    color:var(--ink);
+    background:
+        radial-gradient(circle at 20% 0%, rgba(200,16,46,.06), transparent 40%),
+        radial-gradient(circle at 100% 30%, rgba(184,137,43,.08), transparent 40%),
+        #f1ede4;
+    min-height:100vh;
+    overflow-x:clip;
 }
 
-.container{
-    max-width:800px;
-    margin:40px auto;
-    background:white;
-    border-radius:16px;
+/* ---------- Masthead ---------- */
+
+.flag{
+    height:6px;
+    background:linear-gradient(var(--red) 0 33.3%, #fff 33.3% 66.6%, var(--red) 66.6%);
+}
+
+.masthead{
+    background:var(--navy);
+    color:#fff;
+    position:relative;
     overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
 
-.header{
-    background:#0f2747;
-    color:white;
-    text-align:center;
-    padding:30px;
+.masthead::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 2px, transparent 2px 14px);
+    pointer-events:none;
 }
 
-.header h1{
-    margin:0;
-    font-size:2rem;
+.mast-inner{
+    max-width:1100px;
+    margin:0 auto;
+    padding:28px 24px 0;
+    display:flex;
+    align-items:center;
+    gap:20px;
 }
 
-.header p{
-    margin-top:10px;
-    opacity:0.9;
-}
+.crest{ width:72px; height:84px; flex:none; }
 
-.content{
-    padding:30px;
-}
-
-.notice{
-    background:#f3f6fa;
-    border-left:5px solid #0f2747;
-    padding:15px;
-    margin-bottom:25px;
-}
-
-label{
+.mast-text small{
     display:block;
-    margin-top:15px;
-    font-weight:bold;
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#c9b27a;
+    font-weight:600;
 }
 
-input, select, textarea{
+.mast-text h1{
+    font-family:"Fraunces", serif;
+    font-weight:900;
+    font-size:clamp(1.6rem, 4vw, 2.6rem);
+    margin:4px 0 2px;
+    line-height:1.05;
+}
+
+.mast-text p{
+    margin:0;
+    color:#b9c2d6;
+    font-size:.95rem;
+}
+
+nav{
+    max-width:1100px;
+    margin:22px auto 0;
+    padding:0 24px;
+    display:flex;
+    gap:4px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+nav::-webkit-scrollbar{ display:none; }
+
+nav a{
+    color:#c8d0e0;
+    text-decoration:none;
+    font-size:.88rem;
+    font-weight:500;
+    padding:12px 14px;
+    border-bottom:3px solid transparent;
+    white-space:nowrap;
+}
+
+nav a.active{
+    color:#fff;
+    border-color:var(--gold);
+}
+
+nav a:not(.active):hover{ color:#fff; }
+
+/* ---------- Status ticker ---------- */
+
+.ticker{
+    background:#fff;
+    border-bottom:1px solid var(--line);
+}
+
+.ticker-inner{
+    max-width:1100px;
+    margin:0 auto;
+    padding:12px 24px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:.9rem;
+}
+
+.pulse{
+    width:10px; height:10px;
+    border-radius:50%;
+    background:var(--red);
+    box-shadow:0 0 0 0 rgba(200,16,46,.6);
+    animation:pulse 1.6s infinite;
+    flex:none;
+}
+
+@keyframes pulse{
+    70%{ box-shadow:0 0 0 10px rgba(200,16,46,0); }
+    100%{ box-shadow:0 0 0 0 rgba(200,16,46,0); }
+}
+
+.ticker b{ font-weight:600; }
+
+#status{
+    display:inline-block;
+    transition:opacity .35s, transform .35s;
+}
+
+#status.out{ opacity:0; transform:translateY(-6px); }
+
+/* ---------- Layout ---------- */
+
+main{
+    max-width:1100px;
+    margin:32px auto;
+    padding:0 24px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 320px;
+    gap:28px;
+    align-items:start;
+}
+
+@media (max-width:900px){
+    main{ grid-template-columns:1fr; }
+}
+
+.card{
+    background:#fff;
+    border-radius:var(--radius);
+    box-shadow:0 1px 2px rgba(20,33,61,.06), 0 12px 32px rgba(20,33,61,.08);
+}
+
+/* ---------- Form ---------- */
+
+.form-head{
+    padding:26px 30px 20px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+}
+
+.form-head h2{
+    font-family:"Fraunces", serif;
+    font-size:1.55rem;
+    margin:0;
+}
+
+.form-head p{ margin:6px 0 0; color:var(--muted); font-size:.92rem; }
+
+.form-no{
+    font-family:"Special Elite", monospace;
+    font-size:.8rem;
+    color:var(--muted);
+    border:1px dashed #c9c4b7;
+    padding:6px 10px;
+    border-radius:6px;
+    white-space:nowrap;
+}
+
+form{ padding:8px 30px 30px; }
+
+.field{
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:0 14px;
+    padding:20px 0;
+    border-bottom:1px solid #f0ede6;
+}
+
+.field:last-of-type{ border-bottom:none; }
+
+.num{
+    font-family:"Fraunces", serif;
+    font-weight:700;
+    color:var(--gold);
+    font-size:1.25rem;
+    padding-top:2px;
+}
+
+label, .legend{
+    display:block;
+    font-weight:600;
+    font-size:.95rem;
+    margin-bottom:8px;
+}
+
+.hint{
+    font-weight:400;
+    color:var(--muted);
+    font-size:.82rem;
+    margin-left:6px;
+}
+
+input[type=text], input[type=date], textarea{
     width:100%;
-    padding:12px;
-    margin-top:5px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    box-sizing:border-box;
-}
-
-button{
-    margin-top:25px;
-    width:100%;
-    padding:15px;
-    background:#0f2747;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:1rem;
-}
-
-button:hover{
-    background:#183d6b;
-}
-
-#result{
-    display:none;
-    margin-top:25px;
-    padding:20px;
-    background:#eef7ee;
-    border:2px solid #4caf50;
+    padding:13px 14px;
+    border:1.5px solid #ddd8cc;
     border-radius:10px;
+    font:inherit;
+    background:var(--paper);
+    transition:border-color .2s, box-shadow .2s, background .2s;
 }
 
-.processing{
-    margin-top:20px;
-    display:none;
+input:focus, textarea:focus{
+    outline:none;
+    border-color:var(--navy-2);
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(31,49,96,.12);
 }
 
-.step{
-    margin:8px 0;
+textarea{ resize:vertical; min-height:96px; }
+
+.prio{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:10px;
 }
 
-.footer{
+@media (max-width:560px){
+    .prio{ grid-template-columns:repeat(2, 1fr); }
+    .form-head{ flex-direction:column; }
+    form, .form-head{ padding-left:20px; padding-right:20px; }
+}
+
+.prio input{ position:absolute; opacity:0; pointer-events:none; }
+
+.prio label{
+    margin:0;
+    border:1.5px solid #ddd8cc;
+    border-radius:12px;
+    padding:14px 10px;
     text-align:center;
-    font-size:0.85rem;
-    color:#666;
-    padding:20px;
+    cursor:pointer;
+    background:var(--paper);
+    transition:all .18s;
+    font-weight:600;
+    font-size:.88rem;
+}
+
+.prio label span{
+    display:block;
+    font-size:1.6rem;
+    margin-bottom:6px;
+}
+
+.prio label em{
+    display:block;
+    font-style:normal;
+    font-weight:400;
+    color:var(--muted);
+    font-size:.74rem;
+    margin-top:3px;
+}
+
+.prio label:hover{ border-color:var(--navy-2); transform:translateY(-2px); }
+
+.prio input:checked + label{
+    border-color:var(--navy);
+    background:var(--navy);
+    color:#fff;
+    box-shadow:0 8px 18px rgba(20,33,61,.25);
+}
+
+.prio input:checked + label em{ color:#b9c2d6; }
+
+.prio .hunt{
+    border-color:var(--gold);
+    background:var(--gold-soft);
+}
+
+.prio input:checked + label.hunt{
+    background:linear-gradient(135deg, #8a6420, var(--gold));
+    border-color:#8a6420;
+}
+
+.prio input:checked + label.hunt em{ color:#f5e8c8; }
+
+.prio input:focus-visible + label{ box-shadow:0 0 0 4px rgba(31,49,96,.25); }
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    border:none;
+    border-radius:12px;
+    padding:16px 22px;
+    font:600 1rem "Inter", sans-serif;
+    cursor:pointer;
+    transition:transform .15s, box-shadow .15s, background .15s;
+}
+
+.btn-primary{
+    width:100%;
+    margin-top:10px;
+    background:var(--red);
+    color:#fff;
+    box-shadow:0 10px 22px rgba(200,16,46,.28);
+}
+
+.btn-primary:hover{ transform:translateY(-1px); background:#ad0d27; }
+
+.btn-ghost{
+    background:#fff;
+    color:var(--navy);
+    border:1.5px solid var(--navy);
+    padding:12px 18px;
+    font-size:.92rem;
+}
+
+.btn-ghost:hover{ background:var(--navy); color:#fff; }
+
+.fineprint{
+    font-size:.78rem;
+    color:var(--muted);
+    text-align:center;
+    margin:14px 0 0;
+}
+
+/* ---------- Sidebar ---------- */
+
+aside{ display:grid; gap:18px; }
+
+.stat{
+    padding:20px 22px;
+}
+
+.stat h3{
+    margin:0 0 4px;
+    font-size:.74rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+}
+
+.stat .big{
+    font-family:"Fraunces", serif;
+    font-weight:900;
+    font-size:2.1rem;
+    color:var(--navy);
+    font-variant-numeric:tabular-nums;
+}
+
+.stat .sub{ font-size:.82rem; color:var(--muted); }
+
+.bar{
+    height:8px;
+    border-radius:99px;
+    background:#eee9de;
+    margin-top:12px;
+    overflow:hidden;
+}
+
+.bar i{
+    display:block;
+    height:100%;
+    width:99.7%;
+    background:linear-gradient(90deg, var(--gold), var(--red));
+    border-radius:99px;
+}
+
+.hours{
+    padding:20px 22px;
+    background:var(--navy);
+    color:#dfe5f1;
+}
+
+.hours h3{
+    margin:0 0 12px;
+    font-family:"Fraunces", serif;
+    color:#fff;
+    font-size:1.1rem;
+}
+
+.hours table{ width:100%; border-collapse:collapse; font-size:.85rem; }
+.hours td{ padding:6px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+.hours td:last-child{ text-align:right; color:#c9b27a; }
+.hours tr:last-child td{ border-bottom:none; }
+
+/* ---------- Processing ---------- */
+
+#processing{
+    display:none;
+    padding:34px 30px;
+}
+
+#processing h2{
+    font-family:"Fraunces", serif;
+    margin:0 0 4px;
+}
+
+#processing > p{ color:var(--muted); margin:0 0 24px; }
+
+.timeline{ position:relative; margin-left:14px; }
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:13px; top:8px; bottom:8px;
+    width:2px;
+    background:var(--line);
+}
+
+.tl-step{
+    position:relative;
+    display:flex;
+    gap:16px;
+    align-items:center;
+    padding:10px 0;
+    opacity:.4;
+    transition:opacity .3s;
+}
+
+.tl-step.active, .tl-step.done{ opacity:1; }
+
+.dot{
+    width:28px; height:28px;
+    border-radius:50%;
+    background:#fff;
+    border:2px solid var(--line);
+    display:grid;
+    place-items:center;
+    font-size:.8rem;
+    z-index:1;
+    flex:none;
+}
+
+.tl-step.active .dot{
+    border-color:var(--navy-2);
+    border-top-color:transparent;
+    animation:spin .8s linear infinite;
+}
+
+.tl-step.done .dot{ background:var(--ok); border-color:var(--ok); color:#fff; }
+.tl-step.fail .dot{ background:var(--red); border-color:var(--red); color:#fff; }
+
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+.tl-step b{ font-weight:600; display:block; }
+.tl-step small{ color:var(--muted); }
+.tl-step.fail small{ color:var(--red); font-weight:600; }
+
+/* ---------- Bescheid (result document) ---------- */
+
+#result{ display:none; padding:28px; overflow:hidden; border-radius:var(--radius); }
+
+.doc{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:44px 48px;
+    position:relative;
+    font-family:"Fraunces", serif;
+    font-weight:500;
+    line-height:1.6;
+    box-shadow:0 2px 0 #ece6d8, 0 4px 0 #f6f2e9, 0 6px 0 #e6dfcf;
+    animation:rise .5s ease-out;
+}
+
+@keyframes rise{ from{ opacity:0; transform:translateY(16px); } }
+
+@media (max-width:560px){
+    .doc{ padding:28px 22px; }
+    #result{ padding:16px; }
+}
+
+.doc-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding-bottom:16px;
+    border-bottom:2px solid var(--navy);
+}
+
+.doc-head svg{ width:42px; height:50px; flex:none; }
+
+.doc-head div{ font-family:"Inter", sans-serif; }
+.doc-head strong{ display:block; font-size:.95rem; color:var(--navy); }
+.doc-head span{ font-size:.75rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+
+.doc-meta{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    font-family:"Special Elite", monospace;
+    font-size:.85rem;
+    color:#4a4a4a;
+    margin:18px 0 26px;
+}
+
+.doc h2{
+    text-align:center;
+    letter-spacing:.35em;
+    font-weight:900;
+    font-size:1.5rem;
+    margin:0 0 24px;
+    color:var(--navy);
+}
+
+.doc h4{
+    font-family:"Inter", sans-serif;
+    font-size:.72rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:22px 0 4px;
+}
+
+.doc p{ margin:0 0 10px; }
+
+.highlight{
+    background:linear-gradient(transparent 55%, rgba(184,137,43,.3) 55%);
+    font-weight:700;
+}
+
+.delay{
+    font-family:"Special Elite", monospace;
+    color:var(--red);
+    font-size:.9rem;
+}
+
+.sign{
+    margin-top:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.sign .sig{
+    font-family:"Homemade Apple", cursive;
+    font-size:1.5rem;
+    color:#1b3a8a;
+    transform:rotate(-4deg);
+    line-height:1;
+}
+
+.sign small{
+    display:block;
+    border-top:1px solid #999;
+    padding-top:4px;
+    margin-top:6px;
+    font-family:"Inter", sans-serif;
+    font-size:.75rem;
+    color:var(--muted);
+}
+
+.stamp{
+    position:absolute;
+    bottom:110px;
+    right:190px;
+    font-family:"Inter", sans-serif;
+    font-weight:800;
+    letter-spacing:.2em;
+    font-size:1.3rem;
+    padding:10px 18px;
+    border:4px double currentColor;
+    border-radius:8px;
+    color:var(--red);
+    transform:rotate(-14deg);
+    opacity:.85;
+    mix-blend-mode:multiply;
+    animation:slam .45s cubic-bezier(.2,1.6,.4,1) .4s both;
+}
+
+.stamp.ok{ color:var(--ok); }
+
+@keyframes slam{
+    from{ transform:rotate(-14deg) scale(3); opacity:0; }
+}
+
+@media (max-width:560px){
+    .stamp{ bottom:auto; top:16px; right:16px; font-size:1rem; }
+    .doc{ padding-top:70px; }
+}
+
+.doc-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+
+/* ---------- Footer ---------- */
+
+footer{
+    background:var(--navy);
+    color:#9aa6bf;
+    font-size:.82rem;
+    text-align:center;
+    padding:28px 24px;
+    margin-top:48px;
+}
+
+footer strong{ color:#fff; font-weight:600; }
+
+/* ---------- Print: only the Bescheid ---------- */
+
+@media print{
+    body{ background:#fff; }
+    .flag, .masthead, .ticker, aside, footer, .doc-actions, form, .form-head, #processing{ display:none !important; }
+    main{ display:block; margin:0; padding:0; }
+    .card{ box-shadow:none; }
+    #result{ padding:0; }
+    .doc{ border:none; box-shadow:none; background:#fff; }
 }
 </style>
 </head>
 <body>
 
-<div class="container">
+<svg width="0" height="0" style="position:absolute">
+    <defs>
+        <!-- Fictional crest: red-white-red shield under a set of antlers -->
+        <symbol id="crest" viewBox="0 0 72 84">
+            <g fill="none" stroke="#c9b27a" stroke-width="3" stroke-linecap="round">
+                <path d="M30 22 C24 14 20 8 22 2 M24 12 L16 8 M22 17 L13 16"/>
+                <path d="M42 22 C48 14 52 8 50 2 M48 12 L56 8 M50 17 L59 16"/>
+            </g>
+            <path d="M12 24 H60 V50 C60 66 48 76 36 82 C24 76 12 66 12 50 Z" fill="#fff" stroke="#c9b27a" stroke-width="2.5"/>
+            <clipPath id="shieldClip"><path d="M14 26 H58 V50 C58 65 47 74 36 80 C25 74 14 65 14 50 Z"/></clipPath>
+            <g clip-path="url(#shieldClip)">
+                <rect x="10" y="26" width="52" height="18" fill="#c8102e"/>
+                <rect x="10" y="62" width="52" height="20" fill="#c8102e"/>
+            </g>
+            <text x="36" y="58" text-anchor="middle" font-family="Fraunces, serif" font-weight="900" font-size="12" fill="#14213d">HA</text>
+        </symbol>
+    </defs>
+</svg>
 
-    <div class="header">
-        <h1>🇦🇹 Präsidialamt Hannes Aichenauer</h1>
-        <p>Offizielle Terminvergabestelle für Audienzen und persönliche Vorsprachen</p>
+<div class="flag"></div>
+
+<header class="masthead">
+    <div class="mast-inner">
+        <svg class="crest" aria-hidden="true"><use href="#crest"/></svg>
+        <div class="mast-text">
+            <small>Republik der Terminverzögerung</small>
+            <h1>Präsidialamt Hannes Aichenauer</h1>
+            <p>Offizielle Terminvergabestelle für Audienzen und persönliche Vorsprachen</p>
+        </div>
     </div>
+    <nav>
+        <a href="#" class="active">Audienz beantragen</a>
+        <a href="#" title="Derzeit nicht besetzt">Bürgerservice</a>
+        <a href="#" title="Wird ab 2031 veröffentlicht">Jagdkalender</a>
+        <a href="#" title="Bitte sehen Sie von Kontaktaufnahmen ab">Kontakt</a>
+    </nav>
+</header>
 
-    <div class="content">
+<div class="ticker">
+    <div class="ticker-inner">
+        <span class="pulse" aria-hidden="true"></span>
+        <span><b>Live-Status des Präsidenten:</b> <span id="status">befindet sich im Revier</span></span>
+    </div>
+</div>
 
-        <div class="notice">
-            Aufgrund der hohen Auslastung des Präsidenten werden Anträge derzeit innerhalb von 6–24 Monaten bearbeitet.
+<main>
+
+    <section class="card" id="formCard">
+
+        <div class="form-head" id="formHead">
+            <div>
+                <h2>Antrag auf Audienz</h2>
+                <p>Bitte füllen Sie alle Felder gewissenhaft aus. Unvollständige Anträge werden mit Freude abgelehnt.</p>
+            </div>
+            <div class="form-no">Formular HA-17/b</div>
         </div>
 
         <form id="applicationForm">
 
-            <label>Antragsteller</label>
-            <input type="text" id="name" required>
+            <div class="field">
+                <div class="num">01</div>
+                <div>
+                    <label for="name">Antragsteller <span class="hint">Vor- und Nachname</span></label>
+                    <input type="text" id="name" autocomplete="name" required>
+                </div>
+            </div>
 
-            <label>Grund des Besuchs</label>
-            <textarea id="reason" rows="4" required></textarea>
+            <div class="field">
+                <div class="num">02</div>
+                <div>
+                    <label for="reason">Grund des Besuchs <span class="hint">max. 3 Sätze, der Präsident liest ungern</span></label>
+                    <textarea id="reason" required></textarea>
+                </div>
+            </div>
 
-            <label>Dringlichkeitsstufe</label>
-            <select id="priority">
-                <option>Normal</option>
-                <option>Wichtig</option>
-                <option>Kritisch</option>
-                <option>Jagdbezogen</option>
-            </select>
+            <div class="field">
+                <div class="num">03</div>
+                <div>
+                    <span class="legend">Dringlichkeitsstufe</span>
+                    <div class="prio" role="radiogroup">
+                        <input type="radio" name="prio" id="p1" value="Normal" checked>
+                        <label for="p1"><span>📄</span>Normal<em>ca. 4 Jahre</em></label>
 
-            <label>Gewünschter Termin</label>
-            <input type="date">
+                        <input type="radio" name="prio" id="p2" value="Wichtig">
+                        <label for="p2"><span>📌</span>Wichtig<em>ca. 3,9 Jahre</em></label>
 
-            <button type="submit">
-                Antrag auf Audienz einreichen
+                        <input type="radio" name="prio" id="p3" value="Kritisch">
+                        <label for="p3"><span>🚨</span>Kritisch<em>wird geprüft</em></label>
+
+                        <input type="radio" name="prio" id="p4" value="Jagdbezogen">
+                        <label for="p4" class="hunt"><span>🦌</span>Jagdbezogen<em>Vorrang</em></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="num">04</div>
+                <div>
+                    <label for="date">Gewünschter Termin <span class="hint">unverbindlich, eher symbolisch</span></label>
+                    <input type="date" id="date">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                Antrag verbindlich einreichen →
             </button>
+            <p class="fineprint">Mit dem Absenden akzeptieren Sie, dass Ihr Antrag ignoriert werden kann.</p>
 
         </form>
 
-        <div class="processing" id="processing">
-            <h3>Bearbeitung läuft ...</h3>
-            <div class="step">✅ Sicherheitsüberprüfung</div>
-            <div class="step">✅ Prüfung der persönlichen Eignung</div>
-            <div class="step">✅ Kalenderabgleich</div>
-            <div class="step">✅ Jagdliche Prioritätsbewertung</div>
-            <div class="step">✅ Kabinettsentscheidung</div>
+        <div id="processing" aria-live="polite">
+            <h2>Ihr Antrag wird bearbeitet</h2>
+            <p>Bitte schließen Sie dieses Fenster nicht. Der Präsident tut es auch nicht.</p>
+            <div class="timeline" id="steps"></div>
         </div>
 
-        <div id="result"></div>
+        <div id="result" aria-live="polite"></div>
 
-    </div>
+    </section>
 
-    <div class="footer">
-        Präsidialamt Hannes Aichenauer · Referat für Terminverzögerung und organisatorische Überlastung
-    </div>
+    <aside>
+        <div class="card stat">
+            <h3>Anträge in Warteschlange</h3>
+            <div class="big" id="queue">48.213</div>
+            <div class="sub">Tendenz: steigend</div>
+        </div>
 
-</div>
+        <div class="card stat">
+            <h3>Auslastung des Präsidenten</h3>
+            <div class="big">99,7 %</div>
+            <div class="bar"><i></i></div>
+            <div class="sub" style="margin-top:8px">Restkapazität ausschließlich für Jagdangelegenheiten</div>
+        </div>
+
+        <div class="card stat">
+            <h3>Bearbeitete Anträge <span id="yearLabel"></span></h3>
+            <div class="big">3</div>
+            <div class="sub">davon positiv: 3 (alle jagdbezogen)</div>
+        </div>
+
+        <div class="card hours">
+            <h3>Parteienverkehr</h3>
+            <table>
+                <tr><td>Montag</td><td>geschlossen</td></tr>
+                <tr><td>Dienstag</td><td>geschlossen</td></tr>
+                <tr><td>Mittwoch</td><td>09:00 – 09:15</td></tr>
+                <tr><td>Donnerstag</td><td>Revier</td></tr>
+                <tr><td>Freitag</td><td>Revier</td></tr>
+                <tr><td>Wochenende</td><td>Revier</td></tr>
+            </table>
+        </div>
+    </aside>
+
+</main>
+
+<footer>
+    <strong>Präsidialamt Hannes Aichenauer</strong> · Referat für Terminverzögerung und organisatorische Überlastung<br>
+    Satire. Kein echtes Amt. Der Präsident ist trotzdem nicht erreichbar.
+</footer>
 
 <script>
 
-document.getElementById("applicationForm").addEventListener("submit", function(e){
+const STEPS = [
+    ["Sicherheitsüberprüfung", "Antragsteller wirkt harmlos"],
+    ["Prüfung der persönlichen Eignung", "knapp bestanden"],
+    ["Kalenderabgleich", "Kalender voll"],
+    ["Jagdliche Prioritätsbewertung", "wird berechnet"],
+    ["Kabinettsentscheidung", "Kabinett tagt"]
+];
+
+const STATUSES = [
+    "befindet sich im Revier",
+    "sitzt am Hochstand",
+    "ist in einer Besprechung (Jagdgesellschaft)",
+    "prüft Anträge (angeblich)",
+    "ist nicht erreichbar",
+    "putzt das Gewehr",
+    "hat Ihren Antrag gesehen und weitergescrollt"
+];
+
+const $ = id => document.getElementById(id);
+const form = $("applicationForm");
+const formHead = $("formHead");
+const processing = $("processing");
+const stepsBox = $("steps");
+const result = $("result");
+
+$("yearLabel").textContent = new Date().getFullYear();
+
+/* Live status ticker */
+let si = 0;
+setInterval(() => {
+    const el = $("status");
+    el.classList.add("out");
+    setTimeout(() => {
+        si = (si + 1) % STATUSES.length;
+        el.textContent = STATUSES[si];
+        el.classList.remove("out");
+    }, 350);
+}, 3200);
+
+/* Queue only ever grows */
+let queue = 48213;
+setInterval(() => {
+    queue += 1 + Math.floor(Math.random()*3);
+    $("queue").textContent = queue.toLocaleString("de-AT");
+}, 1400);
+
+function escapeHtml(s){
+    return s.replace(/[&<>"']/g, c => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    })[c]);
+}
+
+function formatDate(d){
+    return d.toLocaleDateString("de-AT", {
+        weekday:"long", day:"numeric", month:"long", year:"numeric"
+    });
+}
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+let appointment = null;
+let inquiries = 0;
+
+form.addEventListener("submit", async function(e){
 
     e.preventDefault();
 
-    document.getElementById("processing").style.display = "block";
+    const applicant = escapeHtml($("name").value.trim());
+    const reason = escapeHtml($("reason").value.trim());
+    const priority = form.prio.value;
+    const wished = $("date").value;
+    const hunting = priority === "Jagdbezogen";
 
-    setTimeout(function(){
+    form.style.display = "none";
+    formHead.style.display = "none";
+    result.style.display = "none";
 
-        const applicant =
-            document.getElementById("name").value;
+    stepsBox.innerHTML = STEPS.map(([t, s]) =>
+        `<div class="tl-step"><div class="dot"></div><div><b>${t}</b><small>${s}</small></div></div>`
+    ).join("");
+    processing.style.display = "block";
+    window.scrollTo({ top: $("formCard").offsetTop - 20, behavior: "smooth" });
 
-        const years = [2027,2028,2029,2030];
-        const randomYear =
-            years[Math.floor(Math.random()*years.length)];
+    const els = stepsBox.querySelectorAll(".tl-step");
+    for (let i = 0; i < els.length; i++){
+        els[i].classList.add("active");
+        await sleep(700 + Math.random()*600);
+        els[i].classList.remove("active");
+        const dot = els[i].querySelector(".dot");
+        const sub = els[i].querySelector("small");
+        if (i === 3){
+            sub.textContent = hunting ? "höchste Priorität" : "keine jagdliche Relevanz";
+        }
+        if (i === els.length - 1 && !hunting){
+            els[i].classList.add("fail");
+            dot.textContent = "✕";
+            sub.textContent = "vertagt";
+        } else {
+            els[i].classList.add("done");
+            dot.textContent = "✓";
+            if (i === els.length - 1) sub.textContent = "einstimmig genehmigt";
+        }
+    }
 
-        const fileNumber =
-            "HA-" +
-            Math.floor(1000 + Math.random()*9000);
+    await sleep(700);
+    processing.style.display = "none";
 
-        document.getElementById("result").style.display = "block";
+    const today = new Date();
+    const fileNumber = "HA-" + Math.floor(1000 + Math.random()*9000) + "/" + today.getFullYear();
 
-        document.getElementById("result").innerHTML = `
-            <h2>🎉 Antrag erfolgreich registriert</h2>
+    const head = `
+        <div class="doc-head">
+            <svg aria-hidden="true"><use href="#crest"/></svg>
+            <div>
+                <strong>Präsidialamt Hannes Aichenauer</strong>
+                <span>Abteilung für kontrollierte Terminvergabe</span>
+            </div>
+        </div>
+        <div class="doc-meta">
+            <span>GZ: ${fileNumber}</span>
+            <span>Wien, am ${today.toLocaleDateString("de-AT")}</span>
+        </div>
+        <h2>BESCHEID</h2>
+        <p>Betreff: Antrag von <strong>${applicant}</strong> auf Audienz beim Präsidenten,
+        Dringlichkeit „${priority}“.</p>
+    `;
 
-            <p>
-            Sehr geehrte/r <strong>${applicant}</strong>,
-            Ihr Antrag wurde ordnungsgemäß entgegengenommen.
-            </p>
+    const actions = `
+        <div class="doc-actions">
+            ${hunting ? "" : '<button class="btn btn-ghost" id="inquiryBtn">Rückfrage stellen</button>'}
+            <button class="btn btn-ghost" onclick="window.print()">Bescheid drucken</button>
+            <button class="btn btn-ghost" id="againBtn">Neuer Antrag</button>
+        </div>
+    `;
 
-            <p>
-            <strong>Aktenzeichen:</strong> ${fileNumber}
-            </p>
+    if (hunting){
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
 
-            <p>
-            Nach eingehender Prüfung wurde festgestellt,
-            dass der nächste verfügbare Termin beim Präsidenten
-            Hannes Aichenauer voraussichtlich im Jahr
-            <strong>${randomYear}</strong> verfügbar sein wird.
-            </p>
+        result.innerHTML = `
+            <div class="doc">
+                <div class="stamp ok">GENEHMIGT</div>
+                ${head}
+                <h4>Spruch</h4>
+                <p>Dem Antrag wird <span class="highlight">vollinhaltlich stattgegeben</span>.
+                Die Audienz findet statt am <span class="highlight">${formatDate(tomorrow)}, 05:30 Uhr</span>,
+                Treffpunkt Hochstand 3.</p>
+                <h4>Begründung</h4>
+                <p>Das Anliegen „${reason}“ wurde als jagdbezogen eingestuft und genießt daher
+                gemäß § 1 der Präsidialgeschäftsordnung absoluten Vorrang vor allen anderen Angelegenheiten.</p>
+                <h4>Hinweise</h4>
+                <p>Bitte erscheinen Sie pünktlich, in gedeckter Kleidung und ohne Parfum.
+                Gespräche sind ausschließlich im Flüsterton zu führen.</p>
+                <div class="sign">
+                    <div>Mit Waidmannsheil</div>
+                    <div><div class="sig">H. Aichenauer</div><small>Der Präsident</small></div>
+                </div>
+                ${actions}
+            </div>
+        `;
+    } else {
+        appointment = new Date(
+            today.getFullYear() + 1 + Math.floor(Math.random()*4),
+            Math.floor(Math.random()*12),
+            1 + Math.floor(Math.random()*28)
+        );
+        inquiries = 0;
 
-            <p>
-            Bitte sehen Sie von Rückfragen ab.
-            Jede Rückfrage verlängert die Bearbeitungszeit um
-            weitere 14 Werktage.
-            </p>
+        const wishedLine = wished
+            ? `<p>Ihr Wunschtermin am ${formatDate(new Date(wished))} wurde zur Kenntnis genommen und verworfen.</p>`
+            : `<p>Ein Wunschtermin wurde nicht angegeben. Dies wird positiv vermerkt, ändert jedoch nichts.</p>`;
 
-            <p>
-            Mit freundlichen Grüßen<br>
-            Abteilung für kontrollierte Terminvergabe
-            </p>
+        result.innerHTML = `
+            <div class="doc">
+                <div class="stamp">VERTAGT</div>
+                ${head}
+                <h4>Spruch</h4>
+                <p>Der Antrag wird ordnungsgemäß registriert. Der nächste verfügbare Termin beim
+                Präsidenten ist voraussichtlich am <span class="highlight" id="apptDate">${formatDate(appointment)}</span>.</p>
+                <h4>Begründung</h4>
+                <p>Das Anliegen „${reason}“ wurde eingehend geprüft. Eine jagdliche Relevanz
+                konnte nicht festgestellt werden.</p>
+                ${wishedLine}
+                <h4>Rechtsmittelbelehrung</h4>
+                <p>Bitte sehen Sie von Rückfragen ab. Jede Rückfrage verlängert die
+                Bearbeitungszeit um weitere 14 Werktage.</p>
+                <p class="delay" id="delayNote"></p>
+                <div class="sign">
+                    <div>Mit freundlichen Grüßen</div>
+                    <div><div class="sig">i.A. Sekretariat</div><small>Für den Präsidenten</small></div>
+                </div>
+                ${actions}
+            </div>
         `;
 
-    }, 2500);
+        $("inquiryBtn").addEventListener("click", function(){
+            inquiries++;
+            // 14 working days ≈ 20 calendar days
+            appointment.setDate(appointment.getDate() + 20);
+            $("apptDate").textContent = formatDate(appointment);
+            $("delayNote").textContent =
+                `Rückfragen bisher: ${inquiries} · Termin um ${inquiries * 14} Werktage verschoben. Wir danken für Ihr Verständnis.`;
+        });
+    }
+
+    $("againBtn").addEventListener("click", function(){
+        result.style.display = "none";
+        form.reset();
+        form.style.display = "block";
+        formHead.style.display = "flex";
+    });
+
+    result.style.display = "block";
 
 });
 
